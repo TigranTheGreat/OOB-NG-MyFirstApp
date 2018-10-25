@@ -1,0 +1,46 @@
+<div class="container">
+  <div #title>
+    <h1>ServerList</h1>
+  </div>
+  <app-server #server>
+    <p>Some server content</p>
+  </app-server>
+  <button class="btn btn-primary" (click)="onTest()">Test</button>
+  <!-- <div class="row">
+    <div class="col-xs-12">
+      {{ servers[0].name }}
+      <div *ngIf="servers[0].status === 'Online'; else server0Offline">
+        {{ servers[0].description }}
+      </div>
+      <ng-template #server0Offline>
+        <div>
+          Offline
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{ servers[1].name }}
+      <div *ngIf="servers[1].status === 'Online'; else server1Offline">
+        {{ servers[1].description }}
+      </div>
+      <ng-template #server1Offline>
+        <div>
+          Offline
+        </div>
+      </ng-template>
+    </div>
+  </div> -->
+  <div *ngFor="let item of servers; let id = index; let first = first" class="row">
+    <!-- [ngStyle]="{ backgroundColor: item.status === 'Online' ? 'palegreen' : 'mistyrose' }" -->
+    <div class="col-xs-12"
+      [ngClass]="{ online: item.status === 'Online', offline: item.status === 'Offline' }"
+    >
+      {{ item.name }} | {{ id }}
+      <div *ngIf="first">
+        this is the first server
+      </div>
+    </div>
+  </div>
+</div>
